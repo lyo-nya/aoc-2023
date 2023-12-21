@@ -17,15 +17,12 @@ fun main() {
     }
 
     fun part1(input: List<String>): Long {
-        var result = 0L
-        for (row in input) {
+        return input.sumOf { row ->
             val (mapRow, damagedComp) = row.split(" ")
-            val damagedCompLong = damagedComp.split(",").map { it.toLong() }
-            result += getAllCombinations(mapRow).count {
-                checkValid(it, damagedCompLong)
+            getAllCombinations(mapRow).count {
+                checkValid(it, damagedComp.split(",").map { it.toLong() })
             }.toLong()
         }
-        return result
     }
 
     val input = readInput("Day12")
